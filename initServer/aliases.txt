@@ -1,0 +1,17 @@
+alias cdgit='cd /root/gitrepository'
+alias cdlocal='cd /var/local'
+alias cdlog='cd /var/log'
+alias cdw='cd /var/www/html'
+
+alias gitadd='echo '\''git add <file>'\'''
+alias gitcommit='echo git commoit -m '\''<message>'\'''
+alias githelp='cat /var/local/util/githelp.txt'
+alias gitpush='echo git pust origin master'
+alias gitrun='sh /root/gitrun.sh'
+alias gogit='cd /root/gitrepository'
+
+alias myerr='less /var/log/myerr.log'
+alias mylog='less /var/log/mylog.log'
+alias nets='netstat -tlnp'
+
+alias la='ls -la'
