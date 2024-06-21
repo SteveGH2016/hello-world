@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd-service-devops
+  namespace: httpd
+spec:
+  type: NodePort
+  selector:
+    app: httpd_app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30004
+---
+# First, add the API
+apiVersion: apps/v1
+# This will be the deployment setup
+kind: Deployment
+metadata:
+  # Name your Deployment here
+  name: example-app-dep
+  namespace: httpd
+  labels:
+    # label your deployment
+    app: httpd_app
+spec:
+  # The number of pods/replicas to run
+  replicas: 4
+  selector:
+    matchLabels:
+    # selector to match the pod
+      app: httpd_app
+  template:
+    metadata:
+      labels:
+      # label your pod
+        app: httpd_app
+    spec:
+      containers:
+      # Add the container name for Kubernetes
+      - name: test-app
+      # Add the local image name
+        image: apache_image:1.0
+        # never pull the image policy
+        #imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
+
+        #command: ["/bin/echo"]
+        #args: ["Hello World"]
+        ports:
+        # port for running the container
+        - containerPort: 80
+
